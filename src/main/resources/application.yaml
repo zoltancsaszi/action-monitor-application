@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+spring:
+  artemis:
+    mode: embedded
+    host: localhost
+    port: 61616
+    user: admin
+    password: admin
+    embedded:
+      queues: monitoring.queue
+      topics: events
+  h2:
+    console:
+      enabled: true
+  jms:
+    pub-sub-domain: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+app:
+  version: '@project.version@'
+
+database:
+  poller:
+    period: 1000
+
+websocket:
+  destination: /web-socket/events"
