@@ -36,5 +36,7 @@ This is a standalone Spring Boot application that monitors insert and update act
           ```
      Database actions will appear in the browser.
      
-### Application Info
-Version can 
+### Application Info queries
+* Version info request: `GET http://localhost:8081/api/version`
+* Application availability: `GET http://localhost:8081/api/availability`
+ 

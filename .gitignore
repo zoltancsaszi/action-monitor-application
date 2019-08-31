@@ -19,6 +19,7 @@ target/
 *.iws
 *.iml
 *.ipr
+action-monitor.iml
 
 ### NetBeans ###
 /nbproject/private/
