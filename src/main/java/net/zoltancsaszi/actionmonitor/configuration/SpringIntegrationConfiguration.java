@@ -19,6 +19,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Configuration component responsible for Spring Integration setup.
+ * Polling periodically the AuditLog table in the database if there
+ * is a new insert or update action, then create messages from the
+ * recent actions, that handled by the JdbcMessageHandler.
  *
  * @author Zoltan Csaszi
  */
