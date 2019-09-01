@@ -1,5 +1,6 @@
 package net.zoltancsaszi.actionmonitor.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ import javax.json.Json;
 @RequestMapping("/api")
 public class ApplicationInfoController {
 
+    @Value("${app.version}")
+    private String version;
+
     @GetMapping("/availability")
     public ResponseEntity<String> getAvailability() {
         String body = Json.createObjectBuilder()
@@ -24,16 +28,16 @@ public class ApplicationInfoController {
                 .build()
                 .toString();
 
-        return new ResponseEntity(body, HttpStatus.OK);
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping("/version")
     public ResponseEntity<String> getVersion() {
         String body = Json.createObjectBuilder()
-                .add("version", this.getClass().getPackage().getImplementationVersion())
+                .add("version", version)
                 .build()
                 .toString();
 
-        return new ResponseEntity(body, HttpStatus.OK);
+        return ResponseEntity.ok(body);
     }
 }

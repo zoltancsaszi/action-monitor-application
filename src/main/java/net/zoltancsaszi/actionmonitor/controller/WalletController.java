@@ -33,19 +33,19 @@ public class WalletController {
     }
 
     @PostMapping("/wallets")
-    public ResponseEntity insertWallet(@RequestBody Wallet wallet) throws Exception {
+    public ResponseEntity<Wallet> insertWallet(@RequestBody Wallet wallet) throws Exception {
 
         validateWallet(wallet);
 
         repository.save(wallet);
 
-        ResponseEntity responseEntity = ResponseEntity.status(HttpStatus.CREATED).build();
+        ResponseEntity<Wallet> responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(wallet);
 
         return responseEntity;
     }
 
     @PostMapping("/wallets/{id}")
-    public ResponseEntity updateWallet(@PathVariable long id, @RequestBody Wallet wallet) throws Exception {
+    public ResponseEntity<Wallet> updateWallet(@PathVariable long id, @RequestBody Wallet wallet) throws Exception {
 
         Optional<Wallet> walletOptional = repository.findById(id);
 
@@ -58,7 +58,7 @@ public class WalletController {
 
         repository.save(model);
 
-        ResponseEntity responseEntity = ResponseEntity.status(HttpStatus.OK).build();
+        ResponseEntity<Wallet> responseEntity = ResponseEntity.ok(wallet);
 
         return responseEntity;
     }
