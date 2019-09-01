@@ -1,7 +1,6 @@
 package net.zoltancsaszi.actionmonitor.controller.exception;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 /**
  * Custom exception class for WalletController.

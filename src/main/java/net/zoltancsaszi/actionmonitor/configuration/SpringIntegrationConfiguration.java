@@ -54,7 +54,7 @@ public class SpringIntegrationConfiguration {
     }
 
     @Bean
-    public IntegrationFlow integrationFlow(@Autowired  JdbcMessageHandler jdbcMessageHandler) {
+    public IntegrationFlow integrationFlow(@Autowired JdbcMessageHandler jdbcMessageHandler) {
         return IntegrationFlows
                 .from(
                         jdbcMessageSource(),
