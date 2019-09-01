@@ -44,15 +44,19 @@ public class MonitoringTrigger implements Trigger {
 
         long id = (long) newRow[0];
 
-        PreparedStatement prep = conn.prepareStatement(
+        try (PreparedStatement prep = conn.prepareStatement(
                 "INSERT INTO AuditLog" +
                         "(TABLE_NAME, PRIM_KEY, TIMESTAMP_, EVENT_TYPE) " +
-                        "VALUES('Wallet', ?, ?, ?)");
+                        "VALUES('Wallet', ?, ?, ?)")) {
 
-        prep.setBigDecimal(1, BigDecimal.valueOf(id));
-        prep.setBigDecimal(2, BigDecimal.valueOf(System.currentTimeMillis()));
-        prep.setString(3, eventType);
-        prep.execute();
+            prep.setBigDecimal(1, BigDecimal.valueOf(id));
+            prep.setBigDecimal(2, BigDecimal.valueOf(System.currentTimeMillis()));
+            prep.setString(3, eventType);
+            prep.execute();
+
+        } catch (Exception ex) {
+            log.error(ex.getMessage(), ex);
+        }
     }
 
     @Override

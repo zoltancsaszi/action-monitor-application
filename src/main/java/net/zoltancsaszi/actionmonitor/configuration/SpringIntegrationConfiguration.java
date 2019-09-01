@@ -30,9 +30,6 @@ public class SpringIntegrationConfiguration {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private JdbcMessageHandler jdbcMessageHandler;
-
     @Value("${database.poller.period}")
     private long pollingFrequency;
 
@@ -54,7 +51,7 @@ public class SpringIntegrationConfiguration {
     }
 
     @Bean
-    public IntegrationFlow integrationFlow() {
+    public IntegrationFlow integrationFlow(@Autowired  JdbcMessageHandler jdbcMessageHandler) {
         return IntegrationFlows
                 .from(
                         jdbcMessageSource(),

@@ -16,12 +16,9 @@ import org.springframework.jms.annotation.EnableJms;
 @EnableJms
 public class ArtemisConfig {
 
-    @Autowired
-    private ArtemisProperties artemisProperties;
-
     @Bean
-    public ArtemisConfigurationCustomizer customizer() {
-        return (configuration) -> {
+    public ArtemisConfigurationCustomizer customizer(@Autowired ArtemisProperties artemisProperties) {
+        return configuration -> {
             try {
                 configuration.addAcceptorConfiguration("netty", "tcp://localhost:" + artemisProperties.getPort());
             } catch (Exception e) {

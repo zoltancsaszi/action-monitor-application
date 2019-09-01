@@ -1,5 +1,6 @@
 package net.zoltancsaszi.actionmonitor.controller.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**
@@ -7,14 +8,7 @@ import lombok.NoArgsConstructor;
  *
  * @author Zoltan Csaszi
  */
-@NoArgsConstructor
+@AllArgsConstructor
 public class WalletNotFoundException extends Exception {
 
-    public WalletNotFoundException(String message) {
-        super(message);
-    }
-
-    public WalletNotFoundException(String message, Throwable throwable) {
-        super(message, throwable);
-    }
 }
